@@ -3,13 +3,18 @@ import Task from "./components/Task";
 import { useEffect, useState } from "react";
 
 import data from "./mock/data";
-import {
-  listItem,
-  Status,
-  StatusInterface,
-  TodoItem1,
-} from "./components/model";
+import { Status, StatusInterface, TodoItem1 } from "./components/model";
 import AddTodoDialog from "./components/AddTodoDialog";
+import styled from "styled-components";
+import { uid } from "uid";
+
+const Main = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: rgba(250, 250, 250);
+  overflow: hidden;
+  position: relative;
+`;
 
 const DEFAULT_FORM = {
   id: "",
@@ -17,6 +22,7 @@ const DEFAULT_FORM = {
   description: "",
   title: "",
   date: new Date(),
+  todos: [],
 };
 
 function Drag() {
@@ -149,16 +155,17 @@ function Drag() {
     const columnData = Object.values(list.columns)[columnIndex];
 
     const columnName = Object.keys(list.columns)[columnIndex];
+    const idTask = uid(10);
 
     if (columnName) {
       setList((prevList) => ({
         ...prevList,
-        task: [...prevList.task, form],
+        task: [...prevList.task, { ...form, id: idTask }],
         columns: {
           ...prevList.columns,
           [columnName]: {
             ...columnData,
-            taskIds: [...columnData.taskIds, form.id],
+            taskIds: [...columnData.taskIds, idTask],
           },
         },
       }));
@@ -170,7 +177,7 @@ function Drag() {
     const indexOldTask = list.task.findIndex((i) => i.id === id);
 
     let newTaskList = list.task;
-    newTaskList.splice(indexOldTask, 1, form);
+    newTaskList.splice(indexOldTask, 1, { ...form, date: new Date() });
 
     setList((prevList) => ({
       ...prevList,
@@ -206,7 +213,11 @@ function Drag() {
   };
 
   const onDeleteTodo = (id: string) => {
-    console.log(id);
+    setList((prevList) => ({
+      ...prevList,
+      task: prevList.task.filter((i) => i.id !== id),
+    }));
+    setVisible(false);
   };
 
   const toDetail = (id: string) => {
@@ -218,8 +229,8 @@ function Drag() {
   };
 
   return (
-    <div>
-      <div className="flex justify-center my-4">
+    <Main>
+      <div className="flex justify-center py-4">
         <button
           className="rounded-3xl px-4 uppercase font-bold text-white bg-green"
           onClick={() => setVisible(true)}
@@ -231,7 +242,7 @@ function Drag() {
       <div className="flex justify-center">
         <DragDropContext onDragEnd={dragEnded}>
           {Object.values(list.columns).map((columnId) => {
-            let task: listItem[] = [];
+            let task: TodoItem1[] = [];
             columnId.taskIds.forEach((taskId) => {
               const item = list.task.find((item) => item.id === taskId);
               item && task.push(item);
@@ -258,7 +269,7 @@ function Drag() {
           ondelete={onDeleteTodo}
         />
       )}
-    </div>
+    </Main>
   );
 }
 

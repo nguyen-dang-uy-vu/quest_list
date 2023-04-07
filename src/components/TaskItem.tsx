@@ -1,15 +1,10 @@
 import { Draggable } from "react-beautiful-dnd";
-import { Status } from "./model";
+import { Status, TodoItem1, color } from "./model";
 import styled from "styled-components";
 import { format } from "date-fns";
 
 interface PropsInterface {
-  task: {
-    id: string;
-    description: string;
-    status: Status;
-    title: string;
-  };
+  task: TodoItem1;
   index: number;
   toDetail: Function;
 }
@@ -27,9 +22,13 @@ const Item = styled.div<propStyle>`
     props.isDragging ? "rgba(0, 0, 0, 0.35) 0px 5px 15px;" : "none"};
   position: relative;
 `;
+
+const StatusTag = styled.p`
+  color: ${(titltProp) => titltProp.color};
+`;
 function TaskItem(props: PropsInterface) {
   const formatDate = (val: Date) => {
-    return format(val, "yyyy/mm/dd HH:mm");
+    return format(val, "yyyy/mm/dd HH:mm:ss");
   };
 
   const toDetail = (id: string) => {
@@ -44,13 +43,17 @@ function TaskItem(props: PropsInterface) {
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
         >
-          <p className="font-bold">Title:</p>
-          <p>{props.task.title}</p>
+          <p className="font-bold ">Title:</p>
+          <p className="truncate">{props.task.title}</p>
           <p className="font-bold">Description:</p>
           <p className="truncate">{props.task.description}</p>
-          <p>{Status[props.task.status]}</p>
+          <p className="absolute text-xs bottom-5 right-4">
+            <StatusTag color={color[props.task.status]}>
+              {Status[props.task.status]}
+            </StatusTag>
+          </p>
           <span className="absolute text-xs top-1 right-1">
-            update: {formatDate(new Date())}
+            update: {formatDate(props.task.date)}
           </span>
           <div className="pt-4">
             <button
@@ -58,9 +61,6 @@ function TaskItem(props: PropsInterface) {
               onClick={() => toDetail(props.task.id)}
             >
               detail
-            </button>
-            <button className="rounded-3xl px-2 bg-red text-white font-bold uppercase h-6">
-              delete
             </button>
           </div>
         </Item>

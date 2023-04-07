@@ -1,10 +1,10 @@
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { listItem, color, Status } from "./model";
+import { color, Status, TodoItem1 } from "./model";
 import TaskItem from "./TaskItem";
 
 interface PropsInterface {
-  tasks: listItem[] | undefined;
+  tasks: TodoItem1[];
   column: {
     id: string;
     title: string;
@@ -13,17 +13,18 @@ interface PropsInterface {
   };
   toDetail: Function;
 }
-type titltProp = {
+type titleProp = {
   color: string;
 };
 
-const Container = styled.div<titltProp>`
+const Container = styled.div<titleProp>`
   margin: 8px;
   border: 1px solid;
   border-color: ${(titltProp) => titltProp.color};
+  background-color: #fff;
 `;
 
-const Title = styled.h3<titltProp>`
+const Title = styled.h3<titleProp>`
   color: ${(titltProp) => titltProp.color};
   padding: 8px;
   font-weight: 900;
@@ -44,7 +45,7 @@ function Task(props: PropsInterface) {
       <Droppable droppableId={props.column.id}>
         {(provided) => (
           <TaskList ref={provided.innerRef} {...provided.droppableProps}>
-            {props.tasks?.map((item, index) => (
+            {props.tasks.map((item, index) => (
               <TaskItem
                 key={item.id}
                 task={item}

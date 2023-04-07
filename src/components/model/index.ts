@@ -32,12 +32,6 @@ export interface TodoItem1 {
   description: string;
   status: Status;
   date: Date;
+  todos: string[]
 }
 
-export type listItem = {
-  id: string;
-  title: string;
-  description: string;
-  status: Status;
-  date?: Date;
-};

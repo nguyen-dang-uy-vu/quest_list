@@ -7,6 +7,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 1,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-2",
@@ -15,6 +16,7 @@ const data = {
         "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 1,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-3",
@@ -23,6 +25,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 1,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-4",
@@ -31,6 +34,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ",
       status: 3,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-5",
@@ -39,6 +43,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 3,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-6",
@@ -47,6 +52,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 3,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-7",
@@ -55,6 +61,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 2,
       date: new Date(),
+      todos: [],
     },
     {
       id: "task-8",
@@ -63,6 +70,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 4,
       date: new Date(),
+      todos: [""],
     },
     {
       id: "task-9",
@@ -71,6 +79,7 @@ const data = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       status: 4,
       date: new Date(),
+      todos: [""],
     },
   ],
   columns: {
